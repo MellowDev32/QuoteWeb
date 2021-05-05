@@ -17,7 +17,7 @@ $category = new Category($db);
 
 $authorID = filter_input(INPUT_GET, 'authorID', FILTER_VALIDATE_INT);
 $categoryID = filter_input(INPUT_GET, 'categoryID', FILTER_VALIDATE_INT);
-$limit = filter_input(INPUT_GET, 'limit', FILTER_VALIDATE_INT);
+$lim = filter_input(INPUT_GET, 'lim', FILTER_VALIDATE_INT); //limit
 
 // Get Request Quote Data 
 if ($authorId) { $quote->authorId = $authorId; }

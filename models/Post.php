@@ -31,6 +31,8 @@
             return $stmt;
         }
 
+        //Get All quotes from an author
+
         //Get Single Post
         public function read_single(){
              // Create query

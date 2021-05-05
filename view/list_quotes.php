@@ -32,6 +32,8 @@
                 <?php endforeach; ?>
             </select>
             <?php } ?>
+            <label>Limit: </label>
+            <input type="number" min="1">
             <input type="submit" value="Submit" class="button blue button-slim">
         </section>
     </form>
