@@ -28,12 +28,14 @@
             // prepare statement
             $stmt = $this->conn->prepare($query);
 
-            // Clean Data
-            $this->lim = htmlspecialchars(strip_tags($this->lim));
+            if($this->lim){
+                // Clean Data
+                $this->lim = htmlspecialchars(strip_tags($this->lim));
 
-            // Bind Data
-            $stmt->bindParam(':lim', $this->lim);
-
+                // Bind Data
+                $stmt->bindParam(':lim', $this->lim);
+            }
+            
             // Execute Query
             $stmt->execute();
 
