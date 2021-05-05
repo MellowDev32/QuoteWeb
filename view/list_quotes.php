@@ -38,37 +38,6 @@
         </section>
     </form>
 
-<?php if($quotes_auth_cat){ ?>
-    <?php foreach ($quotes_auth_cat as $post) : ?>
-        <div class="row">
-            <div class="col">
-                <p><?= $post['quote'] ?></p>
-                <p><?= $post['author_name'] ?></p>
-                <p><?= $post['category_name'] ?></p>
-            </div>
-        </div>
-    <?php endforeach; ?>
-<?php } else if($quotes_auth){ ?>
-    <?php foreach ($quotes_auth as $post) : ?>
-        <div class="row">
-            <div class="col">
-                <p><?= $post['quote'] ?></p>
-                <p><?= $post['author_name'] ?></p>
-                <p><?= $post['category_name'] ?></p>
-            </div>
-        </div>
-    <?php endforeach; ?>
-<?php } else if($quotes_cat){ ?>
-    <?php foreach ($quotes_cat as $post) : ?>
-        <div class="row">
-            <div class="col">
-                <p><?= $post['quote'] ?></p>
-                <p><?= $post['author_name'] ?></p>
-                <p><?= $post['category_name'] ?></p>
-            </div>
-        </div>
-    <?php endforeach; ?>
-<?php } else { ?>
     <?php foreach ($quotes as $post) : ?>
         <div class="row">
             <div class="col">
@@ -78,4 +47,3 @@
             </div>
         </div>
     <?php endforeach; ?>
-<?php } ?>
