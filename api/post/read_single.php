@@ -14,7 +14,7 @@
     $post = new Post($db);
 
     // Get ID
-    $post->id = isset($_GET['id']) ? $_GET['id'] : die();
+    $post->id = (null !== filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT)) ? filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT) : die();
 
     // Get Post
     $post->read_single();
