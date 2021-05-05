@@ -37,12 +37,43 @@
     </form>
 
 <?php foreach ($quotes as $post) : ?>
-<div class="row">
-    <div class="col">
-        <p><?= $post['quote'] ?></p>
-        <p><?= $post['author_name'] ?></p>
-        <p><?= $post['category_name'] ?></p>
-    </div>
-</div>
-
+    <?php if($authorID && $categoryID){ ?>
+        <?php if($authorID == $post['authorID'] && $categoryID == $post['categoryID']){ ?>
+            <div class="row">
+                <div class="col">
+                    <p><?= $post['quote'] ?></p>
+                    <p><?= $post['author_name'] ?></p>
+                    <p><?= $post['category_name'] ?></p>
+                </div>
+            </div>
+        <?php } ?>
+    <?php } else if ($authorID){ ?>
+        <?php if($authorID == $post['authorID']){ ?>
+            <div class="row">
+                <div class="col">
+                    <p><?= $post['quote'] ?></p>
+                    <p><?= $post['author_name'] ?></p>
+                    <p><?= $post['category_name'] ?></p>
+                </div>
+            </div>
+        <?php } ?>
+    <?php } else if ($categoryID){ ?>
+        <?php if($categoryID == $post['categoryID']){ ?>
+            <div class="row">
+                <div class="col">
+                    <p><?= $post['quote'] ?></p>
+                    <p><?= $post['author_name'] ?></p>
+                    <p><?= $post['category_name'] ?></p>
+                </div>
+            </div>
+        <?php } ?>
+    <?php } else { ?>
+        <div class="row">
+                <div class="col">
+                    <p><?= $post['quote'] ?></p>
+                    <p><?= $post['author_name'] ?></p>
+                    <p><?= $post['category_name'] ?></p>
+                </div>
+            </div>
+    <?php } ?>
 <?php endforeach; ?>
