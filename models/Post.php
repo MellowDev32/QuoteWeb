@@ -11,6 +11,7 @@
         public $quote;
         public $authorID;
         public $author_name;
+        public $lim;
 
         //Constructor with DB
         public function __construct($db){
@@ -21,9 +22,17 @@
         public function read() {
             // Create query
             $query = 'SELECT c.category as category_name, q.id, q.categoryID, q.quote, q.authorID, a.author as author_name FROM ' . $this->table . ' q LEFT JOIN categories c ON q.categoryID = c.id LEFT JOIN authors a ON q.authorID = a.id ORDER BY q.id';
-
+            if($this->lim){
+                $query = $query . ' LIMIT 0,:lim'; 
+            }
             // prepare statement
             $stmt = $this->conn->prepare($query);
+
+            // Clean Data
+            $this->lim = htmlspecialchars(strip_tags($this->lim));
+
+            // Bind Data
+            $stmt->bindParam(':lim', $this->lim);
 
             // Execute Query
             $stmt->execute();
@@ -32,6 +41,78 @@
         }
 
         //Get All quotes from an author
+        public function read_author() {
+            // Create query
+            $query = 'SELECT c.category as category_name, q.id, q.categoryID, q.quote, q.authorID, a.author as author_name FROM ' . $this->table . ' q LEFT JOIN categories c ON q.categoryID = c.id LEFT JOIN authors a ON q.authorID = a.id WHERE q.authorID = :authorID';
+            if($this->lim){
+                $query = $query . ' LIMIT 0,:lim'; 
+            }
+            // prepare statement
+            $stmt = $this->conn->prepare($query);
+
+            // Clean Data
+            $this->lim = htmlspecialchars(strip_tags($this->lim));
+            $this->authorID = htmlspecialchars(strip_tags($this->authorID));
+
+            // Bind Data
+            $stmt->bindParam(':lim', $this->lim);
+            $stmt->bindParam(':lim', $this->authorID);
+
+            // Execute Query
+            $stmt->execute();
+
+            return $stmt;
+        }
+
+        //Get All quotes from a Category
+        public function read_category() {
+            // Create query
+            $query = 'SELECT c.category as category_name, q.id, q.categoryID, q.quote, q.authorID, a.author as author_name FROM ' . $this->table . ' q LEFT JOIN categories c ON q.categoryID = c.id LEFT JOIN authors a ON q.authorID = a.id WHERE q.categoryID = :categoryID';
+            if($this->lim){
+                $query = $query . ' LIMIT 0,:lim'; 
+            }
+            // prepare statement
+            $stmt = $this->conn->prepare($query);
+
+            // Clean Data
+            $this->lim = htmlspecialchars(strip_tags($this->lim));
+            $this->categoryID = htmlspecialchars(strip_tags($this->categoryID));
+
+            // Bind Data
+            $stmt->bindParam(':lim', $this->lim);
+            $stmt->bindParam(':lim', $this->categoryID);
+
+            // Execute Query
+            $stmt->execute();
+
+            return $stmt;
+        }
+
+        //Get All quotes from an author and a category
+        public function read_auth_cat() {
+            // Create query
+            $query = 'SELECT c.category as category_name, q.id, q.categoryID, q.quote, q.authorID, a.author as author_name FROM ' . $this->table . ' q LEFT JOIN categories c ON q.categoryID = c.id LEFT JOIN authors a ON q.authorID = a.id WHERE q.categoryID = :categoryID AND q.authorID = :authorID';
+            if($this->lim){
+                $query = $query . ' LIMIT 0,:lim'; 
+            }
+            // prepare statement
+            $stmt = $this->conn->prepare($query);
+
+            // Clean Data
+            $this->lim = htmlspecialchars(strip_tags($this->lim));
+            $this->categoryID = htmlspecialchars(strip_tags($this->categoryID));
+            $this->authorID = htmlspecialchars(strip_tags($this->authorID));
+
+            // Bind Data
+            $stmt->bindParam(':lim', $this->lim);
+            $stmt->bindParam(':lim', $this->categoryID);
+            $stmt->bindParam(':lim', $this->authorID);
+
+            // Execute Query
+            $stmt->execute();
+
+            return $stmt;
+        }
 
         //Get Single Post
         public function read_single(){

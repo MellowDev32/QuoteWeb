@@ -27,5 +27,12 @@ if ($categoryId) { $quote->categoryId = $categoryId; }
 $quotes = $quote->read();
 $authors = $author->read();
 $categories = $category->read();
+if($authorID && $categoryID){
+    $quotes_auth_cat = $quote->read_auth_cat();
+} else if ($authorID){
+    $quotes_auth = $quote->read_author();
+} else if ($categoryID){
+    $quotes_cat = $quote->read_category();
+}
 
 include('view/list_quotes.php');

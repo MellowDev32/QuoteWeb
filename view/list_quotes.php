@@ -33,49 +33,49 @@
             </select>
             <?php } ?>
             <label>Limit: </label>
-            <input type="number" min="1">
+            <input type="number" min="1" name="lim">
             <input type="submit" value="Submit" class="button blue button-slim">
         </section>
     </form>
 
-<?php foreach ($quotes as $post) : ?>
-    <?php if($authorID && $categoryID){ ?>
-        <?php if($authorID == $post['authorID'] && $categoryID == $post['categoryID']){ ?>
-            <div class="row">
-                <div class="col">
-                    <p><?= $post['quote'] ?></p>
-                    <p><?= $post['author_name'] ?></p>
-                    <p><?= $post['category_name'] ?></p>
-                </div>
-            </div>
-        <?php } ?>
-    <?php } else if ($authorID){ ?>
-        <?php if($authorID == $post['authorID']){ ?>
-            <div class="row">
-                <div class="col">
-                    <p><?= $post['quote'] ?></p>
-                    <p><?= $post['author_name'] ?></p>
-                    <p><?= $post['category_name'] ?></p>
-                </div>
-            </div>
-        <?php } ?>
-    <?php } else if ($categoryID){ ?>
-        <?php if($categoryID == $post['categoryID']){ ?>
-            <div class="row">
-                <div class="col">
-                    <p><?= $post['quote'] ?></p>
-                    <p><?= $post['author_name'] ?></p>
-                    <p><?= $post['category_name'] ?></p>
-                </div>
-            </div>
-        <?php } ?>
-    <?php } else { ?>
+<?php if($quotes_auth_cat){ ?>
+    <?php foreach ($quotes_auth_cat as $post) : ?>
         <div class="row">
-                <div class="col">
-                    <p><?= $post['quote'] ?></p>
-                    <p><?= $post['author_name'] ?></p>
-                    <p><?= $post['category_name'] ?></p>
-                </div>
+            <div class="col">
+                <p><?= $post['quote'] ?></p>
+                <p><?= $post['author_name'] ?></p>
+                <p><?= $post['category_name'] ?></p>
             </div>
-    <?php } ?>
-<?php endforeach; ?>
+        </div>
+    <?php endforeach; ?>
+<?php } else if($quotes_auth){ ?>
+    <?php foreach ($quotes_auth as $post) : ?>
+        <div class="row">
+            <div class="col">
+                <p><?= $post['quote'] ?></p>
+                <p><?= $post['author_name'] ?></p>
+                <p><?= $post['category_name'] ?></p>
+            </div>
+        </div>
+    <?php endforeach; ?>
+<?php } else if($quotes_cat){ ?>
+    <?php foreach ($quotes_cat as $post) : ?>
+        <div class="row">
+            <div class="col">
+                <p><?= $post['quote'] ?></p>
+                <p><?= $post['author_name'] ?></p>
+                <p><?= $post['category_name'] ?></p>
+            </div>
+        </div>
+    <?php endforeach; ?>
+<?php } else { ?>
+    <?php foreach ($quotes as $post) : ?>
+        <div class="row">
+            <div class="col">
+                <p><?= $post['quote'] ?></p>
+                <p><?= $post['author_name'] ?></p>
+                <p><?= $post['category_name'] ?></p>
+            </div>
+        </div>
+    <?php endforeach; ?>
+<?php } ?>
