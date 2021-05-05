@@ -105,8 +105,8 @@
 
             // Bind Data
             $stmt->bindParam(':lim', $this->lim);
-            $stmt->bindParam(':lim', $this->categoryID);
-            $stmt->bindParam(':lim', $this->authorID);
+            $stmt->bindParam(':categoryID', $this->categoryID);
+            $stmt->bindParam(':authorID', $this->authorID);
 
             // Execute Query
             $stmt->execute();

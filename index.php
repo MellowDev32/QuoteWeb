@@ -22,6 +22,7 @@ $lim = filter_input(INPUT_GET, 'lim', FILTER_VALIDATE_INT); //limit
 // Get Request Quote Data 
 if ($authorId) { $quote->authorId = $authorId; }
 if ($categoryId) { $quote->categoryId = $categoryId; }
+if ($lim) { $quote->lim = $lim;}
 
 // Read Data
 $quotes = $quote->read();
