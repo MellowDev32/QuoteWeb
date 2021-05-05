@@ -77,11 +77,15 @@
             $stmt = $this->conn->prepare($query);
 
             // Clean Data
-            $this->lim = htmlspecialchars(strip_tags($this->lim));
+            if($this->lim){
+                $this->lim = htmlspecialchars(strip_tags($this->lim)); 
+            }
             $this->categoryID = htmlspecialchars(strip_tags($this->categoryID));
 
             // Bind Data
-            $stmt->bindParam(':lim', $this->lim);
+            if($this->lim){
+                $stmt->bindParam(':lim', $this->lim); 
+            }
             $stmt->bindParam(':lim', $this->categoryID);
 
             // Execute Query
@@ -101,12 +105,16 @@
             $stmt = $this->conn->prepare($query);
 
             // Clean Data
-            $this->lim = htmlspecialchars(strip_tags($this->lim));
+            if($this->lim){
+                $this->lim = htmlspecialchars(strip_tags($this->lim)); 
+            }
             $this->categoryID = htmlspecialchars(strip_tags($this->categoryID));
             $this->authorID = htmlspecialchars(strip_tags($this->authorID));
 
             // Bind Data
-            $stmt->bindParam(':lim', $this->lim);
+            if($this->lim){
+                $stmt->bindParam(':lim', $this->lim); 
+            }
             $stmt->bindParam(':categoryID', $this->categoryID);
             $stmt->bindParam(':authorID', $this->authorID);
 
