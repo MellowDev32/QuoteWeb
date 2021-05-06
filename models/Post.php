@@ -54,10 +54,10 @@
             if($this->categoryID){
                 // Clean Data
                 $this->categoryID = htmlspecialchars(strip_tags($this->categoryID));
-            }
+            
                 // Bind Data
                 $stmt->bindParam(':categoryID', $this->categoryID);
-            
+            }
             
             // Execute Query
             $stmt->execute();
