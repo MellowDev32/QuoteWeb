@@ -35,29 +35,29 @@
             // prepare statement
             $stmt = $this->conn->prepare($query);
 
-            
+            if($this->lim){
                 // Clean Data
                 $this->lim = htmlspecialchars(strip_tags($this->lim));
 
                 // Bind Data
                 $stmt->bindValue(':lim', $this->lim, PDO::PARAM_INT);
-            
+            }
 
-            
+            if($this->authorID){
                 // Clean Data
                 $this->authorID = htmlspecialchars(strip_tags($this->authorID));
 
                 // Bind Data
                 $stmt->bindParam(':authorID', $this->authorID);
-            
+            }
 
-            
+            if($this->categoryID){
                 // Clean Data
                 $this->categoryID = htmlspecialchars(strip_tags($this->categoryID));
 
                 // Bind Data
                 $stmt->bindParam(':categoryID', $this->categoryID);
-            
+            }
             
             // Execute Query
             $stmt->execute();
