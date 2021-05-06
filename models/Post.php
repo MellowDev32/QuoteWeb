@@ -23,14 +23,14 @@
             // Create query
             $query = 'SELECT c.category as category_name, q.id, q.categoryID, q.quote, q.authorID, a.author as author_name FROM ' . $this->table . ' q LEFT JOIN categories c ON q.categoryID = c.id LEFT JOIN authors a ON q.authorID = a.id';
             if($this->authorID && $this->categoryID && $this->authorID > 0 && $this->categoryID > 0){
-                $query = $query . ' WHERE q.authorId = :authorId AND q.categoryId = :categoryId';
+                $query = $query . ' WHERE q.authorID = :authorID AND q.categoryID = :categoryID';
             } else if($this->authorID && $this->authorID > 0 ){
-                $query = $query . ' WHERE q.authorId = :authorId';
+                $query = $query . ' WHERE q.authorID = :authorID';
             } else if($this->categoryID && $this->categoryID > 0){
-                $query = $query . ' WHERE q.categoryId = :categoryId';
+                $query = $query . ' WHERE q.categoryID = :categoryID';
             }
             if($this->lim){
-                $query = $query . ' LIMIT 0,:lim'; 
+                $query = $query . ' LIMIT :lim'; 
             }
             // prepare statement
             $stmt = $this->conn->prepare($query);
