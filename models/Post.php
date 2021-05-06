@@ -21,7 +21,7 @@
         //Get Posts
         public function read() {
             // Create query
-            $query = 'SELECT c.category as category_name, q.id, q.categoryID, q.quote, q.authorID, a.author as author_name FROM ' . $this->table . ' q LEFT JOIN categories c ON q.categoryID = c.id LEFT JOIN authors a ON q.authorID = a.id ORDER BY q.id';
+            $query = 'SELECT c.category as category_name, q.id, q.categoryID, q.quote, q.authorID, a.author as author_name FROM ' . $this->table . ' q LEFT JOIN categories c ON q.categoryID = c.id LEFT JOIN authors a ON q.authorID = a.id';
             if($this->authorID && $this->categoryID){
                 $query = $query . ' WHERE q.authorId = :authorId AND q.categoryId = :categoryId';
             } else if($this->authorID){
