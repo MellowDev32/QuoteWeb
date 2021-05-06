@@ -22,11 +22,11 @@
         public function read() {
             // Create query
             $query = 'SELECT c.category as category_name, q.id, q.categoryID, q.quote, q.authorID, a.author as author_name FROM ' . $this->table . ' q LEFT JOIN categories c ON q.categoryID = c.id LEFT JOIN authors a ON q.authorID = a.id ORDER BY q.id';
-            if($this->authorID && $this->categoryID){
+            if($this->authorID && $this->categoryID && $this->authorID > 0 && $this->categoryID > 0){
                 $query = $query . ' WHERE q.authorId = :authorId AND q.categoryId = :categoryId';
-            } else if($this->authorID){
+            } else if($this->authorID && $this->authorID > 0){
                 $query = $query . ' WHERE q.authorId = :authorId';
-            } else if($this->categoryID){
+            } else if($this->categoryID && $this->categoryID > 0){
                 $query = $query . ' WHERE q.categoryId = :categoryId';
             }
             if($this->lim){
@@ -35,27 +35,27 @@
             // prepare statement
             $stmt = $this->conn->prepare($query);
 
+            // Clean Data
             if($this->lim){
-                // Clean Data
                 $this->lim = htmlspecialchars(strip_tags($this->lim));
-
-                // Bind Data
-                $stmt->bindValue(':lim', $this->lim, PDO::PARAM_INT);
             }
-
             if($this->authorID){
-                // Clean Data
                 $this->authorID = htmlspecialchars(strip_tags($this->authorID));
-
-                // Bind Data
-                $stmt->bindParam(':authorID', $this->authorID);
             }
-
             if($this->categoryID){
-                // Clean Data
                 $this->categoryID = htmlspecialchars(strip_tags($this->categoryID));
             
                 // Bind Data
+                $stmt->bindParam(':categoryID', $this->categoryID);
+            }
+            // Bind Data
+            if($this->lim){
+                $stmt->bindParam(':lim', $this->lim);
+            }
+            if($this->authorID){
+                $stmt->bindParam(':authorID', $this->authorID);
+            }
+            if($this->categoryID){
                 $stmt->bindParam(':categoryID', $this->categoryID);
             }
             
