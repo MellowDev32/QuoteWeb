@@ -13,10 +13,10 @@
   <body>
 
     <form action="." method="get" id="make_selection">
-            <section id="dropmenus" class="dropmenus">
-                <?php if ($authors) { ?>
+            <div class="mb-3">
+            <?php if ($authors) { ?>
                 <label>Author:</label>
-                <select name="authorID">
+                <select class="form-select" name="authorID">
                     <option value="0">View All Authors</option>
                     <?php foreach ($authors as $auth) : ?>
                     <?php if ($auth['id'] == $authorID) { ?>
@@ -29,11 +29,12 @@
                     <?php endforeach; ?>
                 </select>
                 <?php } ?>
+            </div>
 
-
-                <?php if ($categories) { ?>
+            <div class="mb-3">
+            <?php if ($categories) { ?>
                 <label>Categories:</label>
-                <select name="categoryID">
+                <select class="form-select" name="categoryID">
                     <option value="0">View All Categories</option>
                     <?php foreach ($categories as $cat) : ?>
                     <?php if ($cat['id'] == $categoryID) { ?>
@@ -46,23 +47,30 @@
                     <?php endforeach; ?>
                 </select>
                 <?php } ?>
-                <label>Limit: </label>
-                <input type="number" min="1" name="lim">
-                <input type="submit" value="Submit" class="button blue button-slim">
-            </section>
-        </form>
+            </div>    
 
-        <?php foreach ($quotes as $post) : ?>
-            <div class="row">
-                <div class="col">
-                    <p><?= $post['quote'] ?></p>
-                    <p><?= $post['author_name'] ?></p>
-                    <p><?= $post['category_name'] ?></p>
-                </div>
+            <div class="mb-3">
+                <label class="form-label">Limit: </label>
+                <input class="form-control" type="number" min="1" name="lim">
             </div>
-        <?php endforeach; ?>
-
-
+            <div class="mb-3">
+                <input type="submit" value="Submit" class="btn btn-success">
+            </div>
+        </form>
+        <div class="row">
+            <?php foreach ($quotes as $post) : ?>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <blockquote class="card-text"><?= $post['quote'] ?></blockquote>
+                            <p><i>-<?= $post['author_name'] ?></i></p>
+                            <p style="color: blue"><small><?= $post['category_name'] ?></small></p>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+        
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
   </body>
 </html>
