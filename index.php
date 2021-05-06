@@ -20,8 +20,8 @@ $categoryID = filter_input(INPUT_GET, 'categoryID', FILTER_VALIDATE_INT);
 $lim = filter_input(INPUT_GET, 'lim', FILTER_VALIDATE_INT); //limit
 
 // Get Request Quote Data 
-if ($authorId) { $quote->authorId = $authorId; }
-if ($categoryId) { $quote->categoryId = $categoryId; }
+if ($authorID) { $quote->authorID = $authorID; }
+if ($categoryID) { $quote->categoryID = $categoryID; }
 if ($lim) { $quote->lim = $lim;}
 
 // Read Data
