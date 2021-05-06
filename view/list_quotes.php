@@ -59,7 +59,7 @@
         </form>
         <div class="row">
             <?php foreach ($quotes as $post) : ?>
-                <div class="col">
+                <div class="col-4-lg col-6-sm">
                     <div class="card">
                         <div class="card-body">
                             <blockquote class="card-text"><?= $post['quote'] ?></blockquote>
